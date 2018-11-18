@@ -9,7 +9,7 @@ module.exports = {
     },
     addRec: (req, res) => {
         let message = '';
-        let number = req.body.number;
+        let code = req.body.code;
         let name = req.body.name;
         let description = req.body.description;
         let author = req.body.author;
@@ -33,8 +33,8 @@ module.exports = {
                 // check the filetype before uploading it
                 
                         // send the player's details to the database
-                        let query = "INSERT INTO `recipe` (number, name, description, author, ingridients, kkal, gramm) VALUES ('" +
-                        number + "', '" + name + "', '" + description + "', '" + author + "', '" + ingridients + "', '" + kkal + "', '" + gramm + "')";
+                        let query = "INSERT INTO `recipe` (code, name, description, author, ingridients, kkal, gramm) VALUES ('" +
+                        code + "', '" + name + "', '" + description + "', '" + author + "', '" + ingridients + "', '" + kkal + "', '" + gramm + "')";
                         db.query(query, (err, result) => {
                             if (err) {
                                 return res.status(500).send(err);
@@ -63,7 +63,7 @@ module.exports = {
     editRec: (req, res) => {
         
         let recId = req.params.id;
-        let number = req.body.number;
+        let code = req.body.code;
         let name = req.body.name;
         let description = req.body.description;
         let author = req.body.author;
@@ -71,7 +71,7 @@ module.exports = {
         let kkal = req.body.kkal;
         let gramm = req.body.gramm;
 
-        let query = "UPDATE `recipe` SET `number` = '" + number + "', `name` = '" + name + "', `description` = '" + description + "', `author` = '" + author + "', `ingridients` = '" + ingridients + "', `kkal` = '" + kkal + "', `gramm` = '" + gramm + "' WHERE `recipe`.`id` = '" + recId + "'";
+        let query = "UPDATE `recipe` SET `code` = '" + code + "', `name` = '" + name + "', `description` = '" + description + "', `author` = '" + author + "', `ingridients` = '" + ingridients + "', `kkal` = '" + kkal + "', `gramm` = '" + gramm + "' WHERE `recipe`.`id` = '" + recId + "'";
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);

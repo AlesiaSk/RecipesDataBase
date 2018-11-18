@@ -44,6 +44,18 @@ app.get('/edit/:id', editRecPage);
 app.get('/delete/:id', deleteRec);
 app.post('/add', addRec);
 app.post('/edit/:id', editRec);
+app.get('/products', getProductPage);
+app.get('/addProduct', addProdPage);
+app.get('/editProduct/:id', editProdPage);
+app.get('/deleteProduct/:id', deleteProd);
+app.post('/addProduct', addProd);
+app.post('/editProduct/:id', editProd);
+app.get('/delivers', getDeliverPage);
+app.get('/addDeliver', addDeliverPage);
+app.get('/editDeliver/:id', editDeliverPage);
+app.get('/deleteDeliver/:id', deleteDeliver);
+app.post('/addDeliver', addDeliver);
+app.post('/editDeliver/:id', editDeliver);
 
 // set the app to listen on the port
 app.listen(port, () => {
