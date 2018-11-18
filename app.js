@@ -5,13 +5,12 @@ const mysql = require('mysql');
 const path = require('path');
 const app = express();
 
-const {getHomePage, getProductPage} = require('./routes/index');
+const {getHomePage, getProductPage, getDeliverPage} = require('./routes/index');
 const {addRecPage, addRec, deleteRec, editRec, editRecPage} = require('./routes/rec');
 const {addProdPage, addProd, deleteProd, editProd, editProdPage} = require('./routes/prod');
+const {addDeliverPage, addDeliver, deleteDeliver, editDeliver, editDeliverPage} = require('./routes/deliv');
 const port = 2000;
 
-// create connection to database
-// the mysql.createConnection function takes in a configuration object which contains host, user, password and the database name.
 const db = mysql.createConnection ({
     host: 'localhost',
     user: 'root',
@@ -51,13 +50,13 @@ app.get('/editProduct/:id', editProdPage);
 app.get('/deleteProduct/:id', deleteProd);
 app.post('/addProduct', addProd);
 app.post('/editProduct/:id', editProd);
-/*app.get('/delivers', getDeliverPage);
+app.get('/delivers', getDeliverPage);
 app.get('/addDeliver', addDeliverPage);
 app.get('/editDeliver/:id', editDeliverPage);
 app.get('/deleteDeliver/:id', deleteDeliver);
 app.post('/addDeliver', addDeliver);
 app.post('/editDeliver/:id', editDeliver);
-*/
+
 // set the app to listen on the port
 app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
