@@ -1,0 +1,33 @@
+<% include partials/headerprod.ejs %>
+    <div class="table-wrapper">
+        <% if (product.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Ingridients</th>
+                        <th scope="col">Recipe</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% product.forEach((prod, index) => { %>
+                        <tr>
+                            <td><%= prod.name %></td>
+                            <td><%= prod.ingridients %></td>
+                            <td><%= prod.recipe%></td>
+                            <td>
+                                <a href="/editProduct/<%= prod.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                                <a href="/deleteProduct/<%= prod.id %>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No information found. Go <a href="/addProduct" >here</a> to add something.</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>

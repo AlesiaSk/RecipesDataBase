@@ -5,8 +5,9 @@ const mysql = require('mysql');
 const path = require('path');
 const app = express();
 
-const {getHomePage} = require('./routes/index');
+const {getHomePage, getProductPage} = require('./routes/index');
 const {addRecPage, addRec, deleteRec, editRec, editRecPage} = require('./routes/rec');
+const {addProdPage, addProd, deleteProd, editProd, editProdPage} = require('./routes/prod');
 const port = 2000;
 
 // create connection to database
@@ -50,13 +51,13 @@ app.get('/editProduct/:id', editProdPage);
 app.get('/deleteProduct/:id', deleteProd);
 app.post('/addProduct', addProd);
 app.post('/editProduct/:id', editProd);
-app.get('/delivers', getDeliverPage);
+/*app.get('/delivers', getDeliverPage);
 app.get('/addDeliver', addDeliverPage);
 app.get('/editDeliver/:id', editDeliverPage);
 app.get('/deleteDeliver/:id', deleteDeliver);
 app.post('/addDeliver', addDeliver);
 app.post('/editDeliver/:id', editDeliver);
-
+*/
 // set the app to listen on the port
 app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
