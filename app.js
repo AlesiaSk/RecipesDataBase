@@ -5,7 +5,7 @@ const mysql = require('mysql');
 const path = require('path');
 const app = express();
 
-const {getHomePage, getProductPage, getDeliverPage} = require('./routes/index');
+const {getHomePage, getProductPage, getDeliverPage, showMinkkalPage, showProdForRec} = require('./routes/index');
 const {addRecPage, addRec, deleteRec, editRec, editRecPage} = require('./routes/rec');
 const {addProdPage, addProd, deleteProd, editProd, editProdPage} = require('./routes/prod');
 const {addDeliverPage, addDeliver, deleteDeliver, editDeliver, editDeliverPage} = require('./routes/deliv');
@@ -56,8 +56,8 @@ app.get('/editDeliver/:id', editDeliverPage);
 app.get('/deleteDeliver/:id', deleteDeliver);
 app.post('/addDeliver', addDeliver);
 app.post('/editDeliver/:id', editDeliver);
-
-// set the app to listen on the port
+app.get('/showMinkkalPage', showMinkkalPage);
+app.get('/showRecipeForProduct', showProdForRec);
 app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
 });
