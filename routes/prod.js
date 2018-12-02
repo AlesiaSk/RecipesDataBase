@@ -1,10 +1,11 @@
 const fs = require('fs');
 
 module.exports = {
+    
     addProdPage: (req, res) => {
         res.render('add-prod.ejs', {
             title: "Welcome to Recipe book | Add a new product"
-            ,message: ''
+            , message: ''
         });
     },
     addProd: (req, res) => {
@@ -26,18 +27,15 @@ module.exports = {
                     title: "Welcome to Recipe book | Add a new product"
                 });
             } else {
-                // check the filetype before uploading it
-                
-                        // send the player's details to the database
-                        let query = "INSERT INTO `product` ( name, ingridients, recipe) VALUES ( '" + name + "', '" + ingridients + "', '" + recipe + "')";
-                        db.query(query, (err, result) => {
-                            if (err) {
-                                return res.status(500).send(err);
-                            }
-                            res.redirect('/');
-                        });
-                   
-               
+                let query = "INSERT INTO `product` ( name, ingridients, recipe) VALUES ( '" + name + "', '" + ingridients + "', '" + recipe + "')";
+                db.query(query, (err, result) => {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    res.redirect('/');
+                });
+
+
             }
         });
     },
@@ -50,13 +48,13 @@ module.exports = {
             }
             res.render('edit-prod.ejs', {
                 title: "Edit  Product"
-                ,product: result[0]
-                ,message: ''
+                , product: result[0]
+                , message: ''
             });
         });
     },
     editProd: (req, res) => {
-        
+
         let prodId = req.params.id;
         let name = req.body.name;
         let ingridients = req.body.ingridients;

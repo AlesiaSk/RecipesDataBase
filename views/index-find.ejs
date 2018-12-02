@@ -1,0 +1,31 @@
+<% include partials/headerdeliv.ejs %>
+    <div class="table-wrapper">
+        <% if (price_list.length > 0 ) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Ingridient</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Provider</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% price_list.forEach((price, index) => { %>
+                        <tr>
+                            <td><%= price.num %></td>
+                            <td><%= price.ingridients %></td>
+                            <td><%= price.price %></td>
+                            <td><%= price.provider %></td>
+                            
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No information found. Go <a href="/addDeliver" >here</a> to add something.</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>

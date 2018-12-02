@@ -9,6 +9,7 @@ const {getHomePage, getProductPage, getDeliverPage, showMinkkalPage, showProdFor
 const {addRecPage, addRec, deleteRec, editRec, editRecPage} = require('./routes/rec');
 const {addProdPage, addProd, deleteProd, editProd, editProdPage} = require('./routes/prod');
 const {addDeliverPage, addDeliver, deleteDeliver, editDeliver, editDeliverPage} = require('./routes/deliv');
+const {findDeliver, priceListPage} = require('./routes/price');
 const port = 2000;
 
 const db = mysql.createConnection ({
@@ -18,7 +19,6 @@ const db = mysql.createConnection ({
     database: 'products'
 });
 
-// connect to database
 db.connect((err) => {
     if (err) {
         throw err;
@@ -27,16 +27,13 @@ db.connect((err) => {
 });
 global.db = db;
 
-// configure middleware
-app.set('port', process.env.port || port); // set express to use this port
-app.set('views', __dirname + '/views'); // set express to look in this folder to render our view
-app.set('view engine', 'ejs'); // configure template engine
+app.set('port', process.env.port || port); 
+app.set('views', __dirname + '/views'); 
+app.set('view engine', 'ejs'); 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json()); // parse form data client
-app.use(express.static(path.join(__dirname, 'public'))); // configure express to use public folder
-app.use(fileUpload()); // configure fileupload
-
-// routes for the app
+app.use(bodyParser.json()); 
+app.use(express.static(path.join(__dirname, 'public'))); 
+app.use(fileUpload()); 
 
 app.get('/', getHomePage);
 app.get('/add', addRecPage);
@@ -58,6 +55,9 @@ app.post('/addDeliver', addDeliver);
 app.post('/editDeliver/:id', editDeliver);
 app.get('/showMinkkalPage', showMinkkalPage);
 app.get('/showRecipeForProduct', showProdForRec);
+app.get('/findProvider', priceListPage);
+app.post('/findProvider', findDeliver);
+
 app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
 });
